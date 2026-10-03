@@ -1,0 +1,162 @@
+public class CentroLogisticaGalactica {
+
+    private static class Nodo {
+        String contenido;
+        Nodo siguiente;
+
+        public Nodo(String contenido) {
+            this.contenido = contenido;
+            this.siguiente = null;
+        }
+    }
+
+    private String[] muelleDrones;
+    private int frente;
+    private int fin;
+    private int contadorDrones;
+    private final int CAPACIDAD_MUELLE = 5;
+
+    private Nodo topeAlmacen;
+
+    public CentroLogisticaGalactica() {
+        muelleDrones = new String[CAPACIDAD_MUELLE];
+        frente = 0;
+        fin = -1;
+        contadorDrones = 0;
+        topeAlmacen = null;
+    }
+
+    public void llegaDron(String nombreDron) {
+        if (contadorDrones == CAPACIDAD_MUELLE) {
+            System.out.println("Muelle lleno. El dron " + nombreDron + " debe esperar en órbita.");
+            return;
+        }
+        fin = (fin + 1) % CAPACIDAD_MUELLE;
+        muelleDrones[fin] = nombreDron;
+        contadorDrones++;
+        System.out.println("Dron " + nombreDron + " ha atracado en la posición " + fin);
+    }
+
+    private void pushAlmacen(String contenido) {
+        Nodo nuevo = new Nodo(contenido);
+        nuevo.siguiente = topeAlmacen;
+        topeAlmacen = nuevo;
+    }
+
+    public void procesarDron() {
+        if (contadorDrones == 0) {
+            System.out.println("No hay drones en el muelle para procesar.");
+            return;
+        }
+
+        String dronAtendido = muelleDrones[frente];
+        muelleDrones[frente] = null;
+        frente = (frente + 1) % CAPACIDAD_MUELLE;
+        contadorDrones--;
+
+        String cajaSuministro = "Caja_de_Suministros_de_" + dronAtendido;
+        pushAlmacen(cajaSuministro);
+
+        System.out.println("Procesado " + dronAtendido + " -> Descargada y apilada: " + cajaSuministro);
+    }
+
+    public static void main(String[] args) {
+        CentroLogisticaGalactica estacion = new CentroLogisticaGalactica();
+
+        estacion.llegaDron("Dron-Alpha");
+        estacion.llegaDron("Dron-Beta");
+        estacion.llegaDron("Dron-Gamma");
+        estacion.llegaDron("Dron-Delta");
+        estacion.llegaDron("Dron-Epsilon");
+        
+        estacion.llegaDron("Dron-Zeta"); 
+
+        System.out.println("\n--- Iniciando Procesamiento ---");
+        estacion.procesarDron();
+        estacion.procesarDron();
+
+        System.out.println("\n--- Nuevo intento de atraco ---");
+        estacion.llegaDron("Dron-Zeta");
+    }
+}
+public class CentroLogisticaGalactica {
+
+    private static class Nodo {
+        String contenido;
+        Nodo siguiente;
+
+        public Nodo(String contenido) {
+            this.contenido = contenido;
+            this.siguiente = null;
+        }
+    }
+
+    private String[] muelleDrones;
+    private int frente;
+    private int fin;
+    private int contadorDrones;
+    private final int CAPACIDAD_MUELLE = 5;
+
+    private Nodo topeAlmacen;
+
+    public CentroLogisticaGalactica() {
+        muelleDrones = new String[CAPACIDAD_MUELLE];
+        frente = 0;
+        fin = -1;
+        contadorDrones = 0;
+        topeAlmacen = null;
+    }
+
+    public void llegaDron(String nombreDron) {
+        if (contadorDrones == CAPACIDAD_MUELLE) {
+            System.out.println("Muelle lleno. El dron " + nombreDron + " debe esperar en órbita.");
+            return;
+        }
+        fin = (fin + 1) % CAPACIDAD_MUELLE;
+        muelleDrones[fin] = nombreDron;
+        contadorDrones++;
+        System.out.println("Dron " + nombreDron + " ha atracado en la posición " + fin);
+    }
+
+    private void pushAlmacen(String contenido) {
+        Nodo nuevo = new Nodo(contenido);
+        nuevo.siguiente = topeAlmacen;
+        topeAlmacen = nuevo;
+    }
+
+    public void procesarDron() {
+        if (contadorDrones == 0) {
+            System.out.println("No hay drones en el muelle para procesar.");
+            return;
+        }
+
+        String dronAtendido = muelleDrones[frente];
+        muelleDrones[frente] = null;
+        frente = (frente + 1) % CAPACIDAD_MUELLE;
+        contadorDrones--;
+
+        String cajaSuministro = "Caja_de_Suministros_de_" + dronAtendido;
+        pushAlmacen(cajaSuministro);
+
+        System.out.println("Procesado " + dronAtendido + " -> Descargada y apilada: " + cajaSuministro);
+    }
+
+    public static void main(String[] args) {
+        CentroLogisticaGalactica estacion = new CentroLogisticaGalactica();
+
+        estacion.llegaDron("Dron-Alpha");
+        estacion.llegaDron("Dron-Beta");
+        estacion.llegaDron("Dron-Gamma");
+        estacion.llegaDron("Dron-Delta");
+        estacion.llegaDron("Dron-Epsilon");
+        
+        estacion.llegaDron("Dron-Zeta"); 
+
+        System.out.println("\n--- Iniciando Procesamiento ---");
+        estacion.procesarDron();
+        estacion.procesarDron();
+
+        System.out.println("\n--- Nuevo intento de atraco ---");
+        estacion.llegaDron("Dron-Zeta");
+    }
+}

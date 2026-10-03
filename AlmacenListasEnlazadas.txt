@@ -1,0 +1,83 @@
+public class AlmacenListasEnlazadas {
+
+    private static class Nodo {
+        String dato;
+        Nodo siguiente;
+
+        public Nodo(String dato) {
+            this.dato = dato;
+            this.siguiente = null;
+        }
+    }
+
+    private static class ColaCamiones {
+        private Nodo frente;
+        private Nodo fin;
+
+        public ColaCamiones() {
+            this.frente = null;
+            this.fin = null;
+        }
+
+        public void llegaCamion(String placa) {
+            Nodo nuevo = new Nodo(placa);
+            if (fin == null) {
+                frente = nuevo;
+                fin = nuevo;
+            } else {
+                fin.siguiente = nuevo;
+                fin = nuevo;
+            }
+            System.out.println("Camión " + placa + " ingresado al muelle.");
+        }
+
+        public String atenderCamion() {
+            if (frente == null) {
+                return "No hay camiones en la cola.";
+            }
+            String camion = frente.dato;
+            frente = frente.siguiente;
+            if (frente == null) {
+                fin = null;
+            }
+            return "Atendiendo camión: " + camion;
+        }
+    }
+
+    private static class PilaCajas {
+        private Nodo tope;
+
+        public PilaCajas() {
+            this.tope = null;
+        }
+
+        public void apilarCaja(String idCaja) {
+            Nodo nuevo = new Nodo(idCaja);
+            nuevo.siguiente = tope;
+            tope = nuevo;
+            System.out.println("Caja " + idCaja + " apilada.");
+        }
+
+        public String procesarCaja() {
+            if (tope == null) {
+                return "No hay cajas para procesar.";
+            }
+            String caja = tope.dato;
+            tope = tope.siguiente;
+            return "Procesando caja superior: " + caja;
+        }
+    }
+
+    public static void main(String[] args) {
+        ColaCamiones cola = new ColaCamiones();
+        PilaCajas pila = new PilaCajas();
+
+        cola.llegaCamion("ABC-123");
+        cola.llegaCamion("XYZ-789");
+        System.out.println(cola.atenderCamion());
+
+        pila.apilarCaja("CAJA-001");
+        pila.apilarCaja("CAJA-002");
+        System.out.println(pila.procesarCaja());
+    }
+}
