@@ -36,12 +36,11 @@ Es una estructura de datos que funciona bajo el principio **FIFO** (*First In, F
 
 ### 1. AlmacenListasEnlazadas
 **Idea Principal:** 
-La idea principal de este código es implementar tanto una cola como una pila dinámicas utilizando listas enlazadas (basadas en una clase `Nodo`)[cite: 1]. 
-* Se utiliza una clase `ColaCamiones` para registrar los camiones que llegan a un muelle (insertando nodos al final) y atenderlos (removiendo nodos del frente)[cite: 1]. 
-* Se implementa una clase `PilaCajas` para apilar cajas en la parte superior (el tope) y procesarlas retirándolas de ese mismo extremo[cite: 1].
-
+La idea principal de este código es implementar tanto una cola como una pila dinámicas utilizando listas enlazadas (basadas en una clase `Nodo`). 
+* Se utiliza una clase `ColaCamiones` para registrar los camiones que llegan a un muelle (insertando nodos al final) y atenderlos (removiendo nodos del frente)
+* Se implementa una clase `PilaCajas` para apilar cajas en la parte superior (el tope) y procesarlas retirándolas de ese mismo extremo.
 ### 2. CentroLogisticaGalactica
 **Idea Principal:** 
-La idea principal de este código es simular un centro logístico combinando el uso de un arreglo de tamaño fijo para una cola y una estructura de nodos enlazados para una pila[cite: 2].
-* Utiliza un arreglo circular llamado `muelleDrones` que funciona como una cola con una capacidad máxima de 5 espacios para gestionar los drones que llegan a atracar[cite: 2].
-* Al llamar al método `procesarDron()`, el sistema retira un dron de la cola, "descarga" su caja de suministros y la almacena en una pila basada en nodos llamada `topeAlmacen` utilizando el método `pushAlmacen`[cite: 2].
+La idea principal de este código es simular un centro logístico combinando el uso de un arreglo de tamaño fijo para una cola y una estructura de nodos enlazados para una pila
+* Utiliza un arreglo circular llamado `muelleDrones` que funciona como una cola con una capacidad máxima de 5 espacios para gestionar los drones que llegan a atracar
+* Al llamar al método `procesarDron()`, el sistema retira un dron de la cola, "descarga" su caja de suministros y la almacena en una pila basada en nodos llamada `topeAlmacen` utilizando el método `pushAlmacen`
